@@ -27,8 +27,8 @@ class SwaggerConfiguration {
 
     private fun apiInfo(): ApiInfo {
         return ApiInfoBuilder()
-                .title("Spring Boot2.X Kotlin Use in Swagger2 structure RESTFul APIs")
-                .description("More SpringBoot2.X Kotlin Pay attention to the article:Cherish fish blog")
+                .title("Challenger API")
+                .description("Coming Soon...")
                 .termsOfServiceUrl("https://www.intodream.io")
                 .contact(Contact("Cherish fish", "https://www.tisnz.com", "xmsjgzs@163.com"))
                 .version("1.0.0")
