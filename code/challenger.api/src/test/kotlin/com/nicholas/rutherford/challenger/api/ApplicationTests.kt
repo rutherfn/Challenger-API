@@ -1,4 +1,4 @@
-package com.nickrutherford.challenger.api
+package com.nicholas.rutherford.challenger.api
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

@@ -1,4 +1,4 @@
-package com.nickrutherford.challenger.api
+package com.nicholas.rutherford.challenger.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
