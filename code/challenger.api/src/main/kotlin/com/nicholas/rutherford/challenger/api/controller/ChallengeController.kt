@@ -9,19 +9,29 @@ import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/challenger-api")
 class ChallengeController (@Autowired private val challengeRepository: ChallengeRepository) {
 
     // get all the challenges
-    @GetMapping("/challenge")
+    @GetMapping("all/challenges")
     fun getAllChallenges() : List<Challenge> = challengeRepository.findAll()
 
+    // get a challenge by a name
+    @GetMapping("challenge/{title}")
+    fun getChallengeByName(@PathVariable title: String)
+                            : Challenge = challengeRepository.findChallengeByName(title)
+
+    // gets all challenges by a certain category
+    @GetMapping("challenges/category/{category}")
+    fun getChallengesByCategory(@PathVariable category: String)
+                                : List<Challenge> = challengeRepository.findChallengesByCategory(category)
+
     // creates a challenge
-    @PostMapping("/challenge")
+    @PostMapping("create/challenge")
     fun createChallenges(@Valid @RequestBody challenge: Challenge) : Challenge = challengeRepository.save(challenge)
 
     // updates a challenge
-    @PutMapping("/challenge/{challengeId}")
+    @PutMapping("update/challenge/{challengeId}")
     fun updateChallenge(@PathVariable challengeId: Long, @Valid @RequestBody updatedChallenge: Challenge)
                         : ResponseEntity<Challenge> =
                     challengeRepository.findById(challengeId).map {
@@ -30,7 +40,7 @@ class ChallengeController (@Autowired private val challengeRepository: Challenge
                     }.orElse(ResponseEntity.notFound().build())
 
     // deletes a challenge
-    @DeleteMapping("/challenge/{challengeId}")
+    @DeleteMapping("challenge-delete/{challengeId}")
     fun deleteChallenge(@PathVariable challengeId: Long): ResponseEntity<Void> =
                             challengeRepository.findById(challengeId).map {
                                 challengeRepository.delete(it)
