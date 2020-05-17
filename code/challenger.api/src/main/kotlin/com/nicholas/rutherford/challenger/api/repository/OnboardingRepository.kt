@@ -12,7 +12,7 @@ interface OnboardingRepository: JpaRepository<Onboarding, Long> {
     fun findOnboardingByTitle(@Param("title") title: String) :
             Onboarding
 
-    @Query("select b from onboarding b WHERE b.onboardingNumber = :onboardingNumber")
-    fun findOnboardingByNumber(@Param("onboardingNumber") onboardingNumber: Int) :
+    @Query("select b from onboarding b WHERE b.number = :number")
+    fun findOnboardingByNumber(@Param("number") number: Int) :
             Onboarding
 }

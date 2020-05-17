@@ -25,8 +25,8 @@ class SplashController (@Autowired private val splashRepository: SplashRepositor
     fun updateSplash(@PathVariable id: Long, @Valid @RequestBody updatedSplash: Splash) :
             ResponseEntity<Splash> =
             splashRepository.findById(id).map {
-                val newSplash = it.copy(name = updatedSplash.name, primaryColor = updatedSplash.primaryColor, secondaryColor = updatedSplash.secondaryColor,
-                url = updatedSplash.url, isActive = updatedSplash.isActive)
+                val newSplash = it.copy(name = updatedSplash.name, primary_color = updatedSplash.primary_color, secondary_color = updatedSplash.secondary_color,
+                        url = updatedSplash.url, is_active = updatedSplash.is_active)
                 ResponseEntity.ok().body(splashRepository.save(newSplash))
             }.orElse(ResponseEntity.notFound().build())
 

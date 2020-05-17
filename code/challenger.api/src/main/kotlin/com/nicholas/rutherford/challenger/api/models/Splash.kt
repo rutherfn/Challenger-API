@@ -12,8 +12,8 @@ data class Splash(
         @Id @GeneratedValue(
                 strategy = GenerationType.IDENTITY) val id: Long = 0,
         @get: NotBlank val name: String = "",
-        @get: NotBlank val primaryColor: String = "",
-        @get: NotBlank val secondaryColor: String = "",
+        @get: NotBlank val primary_color: String = "",
+        @get: NotBlank val secondary_color: String = "",
         @get: NotBlank val url: String = "",
-        @get: NotNull val isActive: Boolean = false){
+        @get: NotNull val is_active: Boolean = false){
 }

@@ -11,7 +11,7 @@ data class Challenge(
         @Id @GeneratedValue(
                 strategy = GenerationType.IDENTITY) val id: Long = 0,
         @get: NotBlank val title: String = "",
-        @get: NotBlank val desc: String = "",
+        @get: NotBlank val body: String = "",
         @get: NotBlank val category: String = "",
-        @get: NotBlank val imageUrl: String = "") {
+        @get: NotBlank val url: String = "") {
 }

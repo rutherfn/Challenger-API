@@ -19,12 +19,12 @@ class ChallengeController (@Autowired private val challengeRepository: Challenge
     // get a challenge by a name
     @GetMapping("challenge/{title}")
     fun getChallengeByName(@PathVariable title: String)
-                            : Challenge = challengeRepository.findChallengeByName(title)
+            : Challenge = challengeRepository.findChallengeByName(title)
 
     // gets all challenges by a certain category
     @GetMapping("challenges/category/{category}")
     fun getChallengesByCategory(@PathVariable category: String)
-                                : List<Challenge> = challengeRepository.findChallengesByCategory(category)
+            : List<Challenge> = challengeRepository.findChallengesByCategory(category)
 
     // creates a challenge
     @PostMapping("create/challenge")
@@ -33,17 +33,17 @@ class ChallengeController (@Autowired private val challengeRepository: Challenge
     // updates a challenge
     @PutMapping("update/challenge/{challengeId}")
     fun updateChallenge(@PathVariable challengeId: Long, @Valid @RequestBody updatedChallenge: Challenge)
-                        : ResponseEntity<Challenge> =
-                    challengeRepository.findById(challengeId).map {
-                        val newChallenge = it.copy(title = updatedChallenge.title, desc = updatedChallenge.desc, category = updatedChallenge.category, imageUrl = updatedChallenge.imageUrl)
-                        ResponseEntity.ok().body(challengeRepository.save(newChallenge))
-                    }.orElse(ResponseEntity.notFound().build())
+            : ResponseEntity<Challenge> =
+            challengeRepository.findById(challengeId).map {
+                val newChallenge = it.copy(title = updatedChallenge.title, body = updatedChallenge.body, category = updatedChallenge.category, url = updatedChallenge.url)
+                ResponseEntity.ok().body(challengeRepository.save(newChallenge))
+            }.orElse(ResponseEntity.notFound().build())
 
     // deletes a challenge
     @DeleteMapping("challenge-delete/{challengeId}")
     fun deleteChallenge(@PathVariable challengeId: Long): ResponseEntity<Void> =
-                            challengeRepository.findById(challengeId).map {
-                                challengeRepository.delete(it)
-                                ResponseEntity<Void>(HttpStatus.OK)
-                            }.orElse(ResponseEntity.notFound().build())
+            challengeRepository.findById(challengeId).map {
+                challengeRepository.delete(it)
+                ResponseEntity<Void>(HttpStatus.OK)
+            }.orElse(ResponseEntity.notFound().build())
 }

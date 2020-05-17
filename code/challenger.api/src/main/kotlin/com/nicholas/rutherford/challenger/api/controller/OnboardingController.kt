@@ -19,12 +19,12 @@ class OnboardingController (@Autowired private val onboardingRepository: Onboard
     // get a onboarding screen by name
     @GetMapping("onboarding/{title}")
     fun getOnboardingByName(@PathVariable title: String)
-                            : Onboarding = onboardingRepository.findOnboardingByTitle(title)
+            : Onboarding = onboardingRepository.findOnboardingByTitle(title)
 
     // get a onboarding screen by onboarding number
-    @GetMapping("onboarding/number/{onboardingNumber}")
-    fun getOnboardingByNumber(@PathVariable onboardingNumber: Int)
-                            : Onboarding = onboardingRepository.findOnboardingByNumber(onboardingNumber)
+    @GetMapping("onboarding/number/{number}")
+    fun getOnboardingByNumber(@PathVariable number: Int)
+            : Onboarding = onboardingRepository.findOnboardingByNumber(number)
 
     // create onboarding
     @PostMapping("create/onboarding")
@@ -35,8 +35,8 @@ class OnboardingController (@Autowired private val onboardingRepository: Onboard
     fun updateOnboarding(@PathVariable id: Long, @Valid @RequestBody updatedOnboarding: Onboarding) :
             ResponseEntity<Onboarding> =
             onboardingRepository.findById(id).map {
-                val newOnboarding = it.copy(title =  updatedOnboarding.title, subTitle = updatedOnboarding.subTitle, desc = updatedOnboarding.desc,
-                        url = updatedOnboarding.url, onboardingNumber = updatedOnboarding.onboardingNumber)
+                val newOnboarding = it.copy(title =  updatedOnboarding.title, sub = updatedOnboarding.sub, body = updatedOnboarding.body,
+                        url = updatedOnboarding.url, number = updatedOnboarding.number)
                 ResponseEntity.ok().body(onboardingRepository.save(newOnboarding))
             }.orElse(ResponseEntity.notFound().build())
 

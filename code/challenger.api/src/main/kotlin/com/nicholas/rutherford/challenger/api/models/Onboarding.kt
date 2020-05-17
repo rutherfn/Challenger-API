@@ -12,8 +12,8 @@ data class Onboarding(
         @Id @GeneratedValue(
                 strategy = GenerationType.IDENTITY) val id: Long = 0,
         @get: NotBlank val title: String = "",
-        @get: NotBlank val subTitle: String = "",
-        @get: NotBlank val desc: String = "",
+        @get: NotBlank val sub: String = "",
+        @get: NotBlank val body: String = "",
         @get: NotBlank val url: String = "",
-        @get: NotNull val onboardingNumber: Int = 0) {
+        @get: NotNull val number: Int = 0) {
 }
